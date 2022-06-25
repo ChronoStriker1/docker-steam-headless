@@ -1,5 +1,5 @@
 FROM debian:sid-slim
-LABEL maintainer="Josh.5 <jsunnex@gmail.com>"
+LABEL maintainer="docker-library"
 
 # Update package repos
 ARG DEBIAN_FRONTEND=noninteractive
