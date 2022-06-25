@@ -1,5 +1,4 @@
 FROM debian:sid-slim
-LABEL maintainer="docker-library"
 
 # Update package repos
 ARG DEBIAN_FRONTEND=noninteractive
@@ -12,17 +11,17 @@ RUN \
 # Update locale
 RUN \
     echo "**** Update apt database ****" \
-        && apt-get update \
+        && apt update \
     && \
     echo "**** Install and configure locals ****" \
-        && apt-get install -y --no-install-recommends \
+        && apt install -y --no-install-recommends \
             locales \
         && echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen \
         && locale-gen \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -37,15 +36,15 @@ ENV \
 # Re-install certificates
 RUN \
     echo "**** Update apt database ****" \
-        && apt-get update \
+        && apt update \
     && \
     echo "**** Install certificates ****" \
-        && apt-get install -y --reinstall \
+        && apt install -y --reinstall \
             ca-certificates \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -56,10 +55,10 @@ RUN \
 # Install core packages
 RUN \
     echo "**** Update apt database ****" \
-        && apt-get update \
+        && apt update \
     && \
     echo "**** Install tools ****" \
-        && apt-get install -y --no-install-recommends \
+        && apt install -y --no-install-recommends \
             bash \
             bash-completion \
             curl \
@@ -82,15 +81,15 @@ RUN \
             xz-utils \
     && \
     echo "**** Install python ****" \
-        && apt-get install -y --no-install-recommends \
+        && apt install -y --no-install-recommends \
             python3 \
             python3-numpy \
             python3-pip \
             python3-setuptools \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -101,15 +100,15 @@ RUN \
 # Install supervisor
 RUN \
     echo "**** Update apt database ****" \
-        && apt-get update \
+        && apt update \
     && \
     echo "**** Install supervisor ****" \
-        && apt-get install -y \
+        && apt install -y \
             supervisor \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -121,10 +120,10 @@ RUN \
 RUN \
     echo "**** Update apt database ****" \
         && dpkg --add-architecture i386 \
-        && apt-get update \
+        && apt update \
     && \
     echo "**** Install mesa and vulkan requirements ****" \
-        && apt-get install -y --no-install-recommends \
+        && apt install -y --no-install-recommends \
             libegl1 \
             libgl1-mesa-dri \
             libgl1-mesa-dri:i386 \
@@ -144,8 +143,8 @@ RUN \
             vulkan-tools \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -156,10 +155,10 @@ RUN \
 # Install X Server requirements
 RUN \
     echo "**** Update apt database ****" \
-        && apt-get update \
+        && apt update \
     && \
     echo "**** Install X Server requirements ****" \
-        && apt-get install -y --no-install-recommends \
+        && apt install -y --no-install-recommends \
             avahi-utils \
             dbus-x11 \
             libxcomposite-dev \
@@ -176,8 +175,8 @@ RUN \
             xvfb \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -188,15 +187,15 @@ RUN \
 # Install audio requirements
 RUN \
     echo "**** Update apt database ****" \
-        && apt-get update \
+        && apt update \
     && \
     echo "**** Install X Server requirements ****" \
-        && apt-get install -y --no-install-recommends \
+        && apt install -y --no-install-recommends \
             pulseaudio \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -207,16 +206,16 @@ RUN \
 # Install openssh server
 RUN \
     echo "**** Update apt database ****" \
-        && apt-get update \
+        && apt update \
     && \
     echo "**** Install openssh server ****" \
-        && apt-get install -y \
+        && apt install -y \
             openssh-server \
         && echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -282,10 +281,10 @@ RUN \
 # Add support for flatpaks
 RUN \
     echo "**** Update apt database ****" \
-        && apt-get update \
+        && apt update \
     && \
     echo "**** Install flatpak support ****" \
-        && apt-get install -y \
+        && apt install -y \
             bridge-utils \
             flatpak \
             libpam-cgfs \
@@ -297,8 +296,8 @@ RUN \
         && chmod u+s /usr/bin/bwrap \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -309,10 +308,10 @@ RUN \
 # Install desktop environment
 RUN \
     echo "**** Update apt database ****" \
-        && apt-get update \
+        && apt update \
     && \
     echo "**** Install desktop environment ****" \
-        && apt-get install -y \
+        && apt install -y \
             xfce4 \
             xfce4-terminal \
             msttcorefonts \
@@ -320,8 +319,8 @@ RUN \
             gedit \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -333,17 +332,17 @@ RUN \
 RUN \
     echo "**** Install steam ****" \
         && dpkg --add-architecture i386 \
-        && apt-get update \
+        && apt update \
         && echo steam steam/question select "I AGREE" | debconf-set-selections \
         && echo steam steam/license note '' | debconf-set-selections \
-        && apt-get install -y \
-        && apt-get install -y \
+        && apt install -y \
+        && apt install -y \
             steam \
             steam-devices \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -354,15 +353,15 @@ RUN \
 # Install firefox
 RUN \
     echo "**** Update apt database ****" \
-        && apt-get update \
+        && apt update \
     && \
     echo "**** Install firefox ****" \
-        && apt-get install -y \
+        && apt install -y \
             firefox-esr \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
@@ -376,7 +375,7 @@ RUN \
         && apt-get update \
     && \
     echo "**** Install audio streaming deps ****" \
-        && apt-get install -y --no-install-recommends \
+        && apt install -y --no-install-recommends \
             bzip2 \
             gstreamer1.0-alsa \
             gstreamer1.0-gl \
@@ -398,8 +397,8 @@ RUN \
             ucspi-tcp \
     && \
     echo "**** Section cleanup ****" \
-        && apt-get clean autoclean -y \
-        && apt-get autoremove -y \
+        && apt clean autoclean -y \
+        && apt autoremove -y \
         && rm -rf \
             /var/lib/apt/lists/* \
             /var/tmp/* \
