@@ -136,7 +136,7 @@ RUN \
             libvulkan1 \
             libvulkan1:i386 \
             mesa-utils \
-            mesa-utils-extra \
+            #mesa-utils-extra \
             mesa-vulkan-drivers \
             mesa-vulkan-drivers:i386 \
             vainfo \
